@@ -1,0 +1,6 @@
+res://Scenes/main_menu.tscn
+res://Scenes/main_menu.gd
+res://Scenes/Main.tscn
+res://Scenes/escenario.tscn
+res://Scenes/Player.tscn
+res://Scripts/CharacterBody2D.gd

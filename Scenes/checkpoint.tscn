@@ -1,0 +1,138 @@
+[gd_scene load_steps=21 format=3 uid="uid://c4a0pejkty262"]
+
+[ext_resource type="Script" path="res://Scripts/checkpoint.gd" id="1_23bdq"]
+[ext_resource type="Texture2D" uid="uid://bd5afcapecwrw" path="res://Assets/Sprites/fire_fx_v1.0/png/purple/loops/burning_loop_3.png" id="1_bldtf"]
+[ext_resource type="Texture2D" uid="uid://bme2mikneco0r" path="res://Assets/Sprites/fire_fx_v1.0/png/white/loops/burning_loop_1.png" id="3_f76gt"]
+[ext_resource type="AudioStream" uid="uid://35m20tm4rl5b" path="res://Assets/Audio/fire-torch-whoosh-2-186586.mp3" id="4_vvabs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrtuj"]
+atlas = ExtResource("1_bldtf")
+region = Rect2(0, 0, 15, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7wj8"]
+atlas = ExtResource("1_bldtf")
+region = Rect2(15, 0, 15, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaba3"]
+atlas = ExtResource("1_bldtf")
+region = Rect2(30, 0, 15, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrqn3"]
+atlas = ExtResource("1_bldtf")
+region = Rect2(45, 0, 15, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq1va"]
+atlas = ExtResource("1_bldtf")
+region = Rect2(60, 0, 15, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkje0"]
+atlas = ExtResource("1_bldtf")
+region = Rect2(75, 0, 15, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np2ln"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukkot"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42164"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sba6k"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkgrs"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1cum6"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q341k"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4koo"]
+atlas = ExtResource("3_f76gt")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37a6h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrtuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7wj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaba3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrqn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq1va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkje0")
+}],
+"loop": true,
+"name": &"Activated",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np2ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukkot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42164")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sba6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkgrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1cum6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q341k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4koo")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkd6f"]
+size = Vector2(20, 26)
+
+[node name="Checkpoint" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_37a6h")
+animation = &"Activated"
+frame_progress = 0.576656
+script = ExtResource("1_23bdq")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_hkd6f")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vvabs")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
